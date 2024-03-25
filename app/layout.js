@@ -1,13 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// NextJS also optimizes the fonts.
-// We can use almost any font from google here.
-// Instead of using inter, we can use any font from google fonts.
-// If we want to use other source then we have to set that in more stuff.
-// We can use that font in any page, or custom font for custom text.
-// We just have to provide classname = font.className and all set.
-// But we have to create instace of it like this.
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
