@@ -1,9 +1,8 @@
 import React from 'react'
 
-const User = ({params}) => {
-  console.log(params);
+const User = () => {
   return (
-    <div>{params.user}</div>
+    <div>User</div>
   )
 }
 
