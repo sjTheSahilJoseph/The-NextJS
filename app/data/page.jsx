@@ -1,51 +1,42 @@
-"use client";
-
-// As we do in native react component, we use useEffect for side effect.
-// And useState for state variable.
-
-import { useEffect, useState } from "react";
+import React from 'react'
 
 
-// Fetch data in client component.
+// To fetch data on server component,
+// we have to create a async function.
 
-function Data() {
+async function FetchData(url) {
 
-    const [product, setProduct] = useState([]);
-
-    useEffect(() => {
-
-        let url = 'https://jsonplaceholder.typicode.com/posts';
-
-        async function FetchData(url) {
-            let data = await fetch(url);
-
-            data = await data.json();
-
-            setProduct(data);
-        }
-
-        FetchData(url);
-
-    }, []);
-
-
-    return (
-        <>
-            <div className="container">Data</div>
-        {
-            product?.map((p)=>{
-                return <>
-                    <div key={p.id}>
-                    <h1>by {p.userId}</h1>
-                    <h1>Title: {p.title}</h1>
-                    <h1>Body: {p.body}</h1>
-                    </div>
-                </>
-            })
-        }
-        </>
-    );
+    let data = await fetch(url);
+    data = data.json();
+    return data;
 
 }
 
-export default Data;
+// We have to make this function async.
+const Data =  async () => {
+    let blogs = await FetchData('https://jsonplaceholder.typicode.com/posts');
+    console.log(blogs);
+
+  return (
+      <>
+    <div>page</div>
+
+      <div>{
+          blogs.map((b)=>{
+
+              return (
+              <div className="container" key={b.id}>
+
+                    <h1>{b.title}</h1>
+                  </div>
+              )
+              
+
+          })
+      }
+</div>
+      </>
+  )
+}
+
+export default Data
